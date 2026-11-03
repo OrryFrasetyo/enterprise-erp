@@ -1,0 +1,24 @@
+{
+	"name": "modules/work-order",
+	"description": "",
+	"type": "library",
+	"version": "1.0",
+	"license": "proprietary",
+	"require": {},
+	"autoload": {
+		"psr-4": {
+			"Modules\\WorkOrder\\": "src/",
+			"Modules\\WorkOrder\\Tests\\": "tests/",
+			"Modules\\WorkOrder\\Database\\Factories\\": "database/factories/",
+			"Modules\\WorkOrder\\Database\\Seeders\\": "database/seeders/"
+		}
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\WorkOrder\\Providers\\WorkOrderServiceProvider"
+			]
+		}
+	}
+}
