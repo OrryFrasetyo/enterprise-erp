@@ -12,9 +12,13 @@ createInertiaApp({
     resolve: (name) => {
         if (name.includes('::')) {
             const [module, page] = name.split('::');
+            const kebabModule = module
+                .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+                .toLowerCase();
+
             return resolvePageComponent(
-                `../../modules/${module}/resources/js/Pages/${page}.jsx`,
-                import.meta.glob('../../modules/*/resources/js/Pages/**/*.jsx'),
+                `../../app-modules/${kebabModule}/resources/js/Pages/${page}.jsx`,
+                import.meta.glob('../../app-modules/*/resources/js/Pages/**/*.jsx'),
             );
         }
 
