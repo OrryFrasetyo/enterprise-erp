@@ -33,7 +33,7 @@ class BranchStock extends Model
     }
 
     public function branch(): BelongsTo
-    {   
+    {
         return $this->belongsTo(Branch::class);
     }
 }

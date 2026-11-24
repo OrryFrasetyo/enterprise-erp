@@ -11,7 +11,8 @@ class InventoryServiceProvider extends ServiceProvider
 {
     public function register(): void {}
 
-    public function boot(): void {
+    public function boot(): void
+    {
         Gate::policy(Part::class, PartPolicy::class);
     }
 }

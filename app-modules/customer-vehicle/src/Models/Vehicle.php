@@ -44,7 +44,7 @@ class Vehicle extends Model
 
     public function scopeSearchByPlate(Builder $query, string $keyword): Builder
     {
-        return $query->where('license_plate', 'ILIKE', '%' . trim($keyword) . '%');
+        return $query->where('license_plate', 'ILIKE', '%'.trim($keyword).'%');
     }
 
     public function customer(): BelongsTo

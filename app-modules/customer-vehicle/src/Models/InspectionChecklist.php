@@ -36,6 +36,6 @@ class InspectionChecklist extends Model
 
     public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Vehicle::class, 'vehicle_id', 'id');    
+        return $this->belongsTo(Vehicle::class, 'vehicle_id', 'id');
     }
 }

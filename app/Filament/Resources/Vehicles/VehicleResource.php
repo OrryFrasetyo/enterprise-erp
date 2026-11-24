@@ -29,7 +29,7 @@ class VehicleResource extends Resource
         return VehicleForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema 
+    public static function infolist(Schema $schema): Schema
     {
         return VehicleInfolist::configure($schema);
     }

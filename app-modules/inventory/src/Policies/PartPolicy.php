@@ -7,12 +7,12 @@ use Modules\Inventory\Models\Part;
 
 class PartPolicy
 {
-    public function viewAny(User $user): bool 
+    public function viewAny(User $user): bool
     {
         return true;
     }
 
-    public function view(User $user, Part $part): bool 
+    public function view(User $user, Part $part): bool
     {
         return true;
     }
@@ -31,5 +31,4 @@ class PartPolicy
     {
         return $user->hasRole('super_admin');
     }
-
 }
