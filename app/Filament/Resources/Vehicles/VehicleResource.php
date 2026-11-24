@@ -22,14 +22,14 @@ class VehicleResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Vehicle';
+    protected static ?string $recordTitleAttribute = 'license_plate';
 
     public static function form(Schema $schema): Schema
     {
         return VehicleForm::configure($schema);
     }
 
-    public static function infolist(Schema $schema): Schema
+    public static function infolist(Schema $schema): Schema 
     {
         return VehicleInfolist::configure($schema);
     }

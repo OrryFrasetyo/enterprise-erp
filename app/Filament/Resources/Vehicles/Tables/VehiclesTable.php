@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Vehicles\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -49,6 +50,11 @@ class VehiclesTable
                 //
             ])
             ->recordActions([
+                Action::make('inspect')
+                    ->label('Inspeksi Fisik')
+                    ->icon('heroicon-o-clipboard-document-check')
+                    ->color('success')
+                    ->url(fn ($record): string => route('customer-vehicle.inspect.create', $record->id)),
                 ViewAction::make(),
                 EditAction::make(),
             ])
