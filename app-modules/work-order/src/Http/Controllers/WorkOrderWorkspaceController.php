@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Modules\CustomerVehicle\Models\Vehicle;
 use Modules\WorkOrder\Actions\CreateWorkOrderAction;
+use Modules\WorkOrder\Actions\UpdateWorkOrderStatusAction;
 use Modules\WorkOrder\Enums\WorkOrderStatus;
 use Modules\WorkOrder\Http\Requests\StoreWorkOrderRequest;
 use Modules\WorkOrder\Models\WorkOrder;
@@ -50,29 +51,19 @@ class WorkOrderWorkspaceController extends Controller
             ->with('success', 'Work Order baru berhasil dibuat.');
     }
 
-    public function updateStatus(Request $request, WorkOrder $workOrder): RedirectResponse
+    public function updateStatus(Request $request, WorkOrder $workOrder, UpdateWorkOrderStatusAction $action): RedirectResponse
     {
         $validated = $request->validate([
             'status' => ['required', Rule::enum(WorkOrderStatus::class)],
             'mechanic_notes' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $newStatus = WorkOrderStatus::from($validated['status']);
-
-        $updates = [
-            'status' => $newStatus,
-            'mechanic_notes' => $validated['mechanic_notes'] ?? $workOrder->mechanic_notes,
-        ];
-
-        if ($newStatus === WorkOrderStatus::InProgress && $workOrder->started_at === null) {
-            $updates['started_at'] = now();
-        }
-
-        if ($newStatus === WorkOrderStatus::Completed) {
-            $updates['completed_at'] = now();
-        }
-
-        $workOrder->update($updates);
+        $action->execute(
+            actor: $request->user(),
+            workOrder: $workOrder,
+            newStatus: WorkOrderStatus::from($validated['status']),
+            mechanicNotes: $validated['mechanic_notes'] ?? null,
+        );
 
         return redirect()->route('work-order.workspace.index');
     }
