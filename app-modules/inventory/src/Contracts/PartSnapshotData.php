@@ -2,7 +2,7 @@
 
 namespace Modules\Inventory\Contracts;
 
-readonly class PartSnapshotData 
+readonly class PartSnapshotData
 {
     public function __construct(
         public int $partId,

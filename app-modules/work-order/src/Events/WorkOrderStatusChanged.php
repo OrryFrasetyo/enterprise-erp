@@ -18,7 +18,5 @@ class WorkOrderStatusChanged
         public readonly int $actorId,
         public readonly string $actorName,
         public readonly ?string $notes = null,
-    )
-    {
-    }
+    ) {}
 }

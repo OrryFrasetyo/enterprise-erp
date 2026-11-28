@@ -11,7 +11,7 @@ use RuntimeException;
 
 class StockReservationService implements StockReservationContract
 {
-	public function reserveForWorkOrder(
+    public function reserveForWorkOrder(
         int $branchId,
         int $partId,
         int $qty,
@@ -57,7 +57,7 @@ class StockReservationService implements StockReservationContract
         });
     }
 
-	public function deductReservedForWorkOrder(
+    public function deductReservedForWorkOrder(
         int $branchId,
         int $partId,
         int $qty,
@@ -84,5 +84,5 @@ class StockReservationService implements StockReservationContract
                 'notes' => "Pemotongan stok final dari penyelesaian Work Order #{$workOrderId}",
             ]);
         });
-	}
+    }
 }

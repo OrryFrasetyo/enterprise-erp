@@ -12,12 +12,11 @@ class AddPartToWorkOrderAction
 {
     public function __construct(
         private readonly StockReservationContract $stockReservation
-    ){
-    }
+    ) {}
 
     public function execute(User $actor, WorkOrder $workOrder, int $partId, int $qty): WorkOrderPart
     {
-        return DB::transaction(function () use ($actor, $workOrder, $partId, $qty){
+        return DB::transaction(function () use ($actor, $workOrder, $partId, $qty) {
             // modul Inventory mengecek & mengunci stok
             $snapshot = $this->stockReservation->reserveForWorkOrder(
                 branchId: $workOrder->branch_id,
@@ -25,8 +24,8 @@ class AddPartToWorkOrderAction
                 qty: $qty,
                 workOrderId: $workOrder->id,
                 actorId: $actor->id
-            );        
-            
+            );
+
             // Simpan snapshot suku cadang ke tabel work_order_parts
             return $workOrder->parts()->create([
                 'part_id' => $snapshot->partId,

@@ -18,7 +18,5 @@ class WorkOrderCompleted
         public readonly int $totalLaborCost,
         public readonly int $totalPartsCost,
         public readonly array $parts,
-    )
-{
-    }
+    ) {}
 }

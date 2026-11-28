@@ -11,7 +11,7 @@ interface StockReservationContract
         int $workOrderId,
         int $actorId
     ): PartSnapshotData;
-    
+
     public function deductReservedForWorkOrder(
         int $branchId,
         int $partId,

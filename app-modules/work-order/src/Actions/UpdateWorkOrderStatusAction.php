@@ -26,7 +26,7 @@ class UpdateWorkOrderStatusAction
 
         $completedEventPayload = null;
 
-        DB::transaction(function () use ($actor, $workOrder, $previousStatus, $newStatus, $mechanicNotes, &$completedEventPayload) {
+        DB::transaction(function () use ($actor, $workOrder, $newStatus, $mechanicNotes, &$completedEventPayload) {
             $updates = [
                 'status' => $newStatus,
                 'mechanic_notes' => $mechanicNotes ?? $workOrder->mechanic_notes,
